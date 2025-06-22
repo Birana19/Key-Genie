@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>KeyGenie - Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 🔒 Lock Screen -->
+    <div class="lock-screen" id="lockScreen">
+      <img
+        src="images/pwgen.jpg"
+        alt="Click to Unlock"
+        id="lock"
+        onclick="spinner()"
+      />
+      <h6>Click icon to continue.</h6>
+      <h1>
+        <span style="color: aqua">K</span>ey<span style="color: aqua">G</span
+        >enie
+      </h1>
+    </div>
+
+    <!-- ⏳ Spinner Wrapper (Hidden at first) -->
+    <div id="spinnerWrapper" class="hidden">
+      <div class="spinner" id="spinnerLoader"></div>
+    </div>
+
+    <!-- 🔐 Password Generator (Hidden at first) -->
+    <div class="container hidden" id="generatorUI">
+      <h1 class="brand-title">
+        <span style="color: aqua">K</span><span>ey</span
+        ><span style="color: aqua">G</span><span>enie</span>
+        <img src="images/padlock.png" alt="padlock icon" class="padlock-icon" />
+      </h1>
+
+      <div class="settings">
+        <label>Choose password requirements: </label>
+        <label
+          >Length: <input type="number" id="length" value="12" min="4" max="32"
+        /></label>
+        <label
+          ><input type="checkbox" id="includeUppercase" checked /> Include
+          Uppercase</label
+        >
+        <label
+          ><input type="checkbox" id="includeLowercase" checked /> Include
+          Lowercase</label
+        >
+        <label
+          ><input type="checkbox" id="includeNumbers" checked /> Include
+          Numbers</label
+        >
+        <label
+          ><input type="checkbox" id="includeSymbols" checked /> Include
+          Symbols</label
+        >
+      </div>
+      <button onclick="generatePassword()">Generate Password</button>
+      <input type="text" id="passwordOutput" readonly />
+      <p id="strengthText"></p>
+      <div id="strengthBar"></div>
+
+      <div class="copy-wrapper">
+        <button onclick="copyPassword()">Copy</button>
+        <span id="copyTooltip" class="tooltip hidden">Copied!</span>
+      </div>
+
+      <!-- History Toggle Button -->
+      <button onclick="toggleHistory()" id="toggleHistoryBtn">
+        Show History
+      </button>
+
+      <!-- Password History Section (Hidden initially) -->
+      <div id="historySection" class="hidden">
+        <h3>Last Generated Passwords</h3>
+        <ul id="historyList"></ul>
+        <button onclick="clearHistory()" id="clearHistoryBtn">
+          Clear History
+        </button>
+      </div>
+    </div>
+
+    <!-- Your page content here -->
+
+    <footer>&copy; 2025 KeyGenie. All rights reserved.</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
